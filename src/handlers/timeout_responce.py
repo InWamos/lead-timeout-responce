@@ -11,7 +11,7 @@ async def on_message(client: Client, message: Message) -> None:
 
     if message.from_user.id == 5252866509:
         await message.reply(
-            "i hate niggers", schedule_date=first_message_scheduled_date
+            "Привет)", schedule_date=first_message_scheduled_date
         )
         await client.send_sticker(
             chat_id=message.chat.id,
