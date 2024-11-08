@@ -14,19 +14,12 @@ API_HASH = os.getenv("API_HASH")
 if not API_ID or not API_HASH:
     raise ValueError("No config data provided")
 
+
 def main() -> None:
 
-    # apps = [
-    #     # Client("my_account2"),
-    #     Client("my_account")
-    # ]
-
-    # for app in apps:
     app = Client("my_account")
     app.add_handler(MessageHandler(on_message))
-    # await compose(apps)
     app.run()
-
 
 
 if __name__ == "__main__":
