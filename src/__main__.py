@@ -1,5 +1,6 @@
-import os
 import asyncio
+import os
+import uvloop
 
 from pyrogram.sync import compose
 from pyrogram.client import Client
@@ -15,12 +16,16 @@ if not API_ID or not API_HASH:
     raise ValueError("No config data provided")
 
 
-def main() -> None:
+async def main() -> None:
 
-    app = Client("my_account")
-    app.add_handler(MessageHandler(on_message))
-    app.run()
+    apps = [Client("my_account"), Client("my_account2")]
+
+    for app in apps:
+        app.add_handler(MessageHandler(on_message))
+
+    await compose(apps)
 
 
 if __name__ == "__main__":
-    main()
+    uvloop.install()
+    asyncio.run(main())
