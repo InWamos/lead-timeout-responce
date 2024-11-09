@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from pyrogram.types import Message
 from pyrogram.client import Client
-
+from data_readers.data_reader_io import is_timespan_long_enough, add_client
 
 async def on_message(client: Client, message: Message) -> None:
 
