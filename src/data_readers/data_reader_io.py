@@ -22,7 +22,11 @@ def is_timespan_long_enough(client_id: int, receiver_id: int) -> bool:
 
 def add_client(client_id: int, receiver_id: int) -> None:
     memory = read_memory(client_id)
-    memory[receiver_id] = {"last_schedule": datetime.now().isoformat()}
+    receiver = str(receiver_id)
+    if receiver in memory:
+        memory[receiver]["last_schedule"] = datetime.now().isoformat()
+    else:
+        memory[receiver_id] = {"last_schedule": datetime.now().isoformat()}
 
     with open(
         get_path_to_memory_file(client_id), mode="w", encoding="utf-8"
