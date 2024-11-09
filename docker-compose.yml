@@ -1,0 +1,11 @@
+services:
+
+  lead-timeout:
+    build:
+      context: .
+    restart: on-failure
+    container_name: lead-timeout-telegram
+    volumes:
+      - .:/app
+    working_dir: /app 
+    command: /venv/bin/python src/__main__.py
