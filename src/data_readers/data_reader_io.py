@@ -5,13 +5,13 @@ import os
 
 def is_timespan_long_enough(client_id: int, receiver_id: int) -> bool:
     memory = read_memory(client_id)
-    receiver = memory.get(receiver_id)
+    receiver_id_str = str(receiver_id)
 
-    if not receiver:
+    if receiver_id_str not in memory.keys():
         return True
     else:
         time_now = datetime.now()
-        date_last_schedule = datetime.fromisoformat(receiver.get("last_schedule"))  # type: ignore
+        date_last_schedule = datetime.fromisoformat(memory[receiver_id_str]["last_schedule"])  # type: ignore
         time_passed = time_now - date_last_schedule
 
         if time_passed.days >= 1:
@@ -26,7 +26,7 @@ def add_client(client_id: int, receiver_id: int) -> None:
     if receiver in memory:
         memory[receiver]["last_schedule"] = datetime.now().isoformat()
     else:
-        memory[receiver_id] = {"last_schedule": datetime.now().isoformat()}
+        memory[receiver] = {"last_schedule": datetime.now().isoformat()}
 
     with open(
         get_path_to_memory_file(client_id), mode="w", encoding="utf-8"
@@ -34,7 +34,7 @@ def add_client(client_id: int, receiver_id: int) -> None:
         json.dump(memory, received_json)
 
 
-def read_memory(client_id: int) -> dict[int, dict[str, str]]:
+def read_memory(client_id: int) -> dict[str, dict[str, str]]:
     path_to_memory = get_path_to_memory_file(client_id)
 
     if not os.path.exists(path_to_memory):
