@@ -5,7 +5,6 @@ from data_readers.data_reader_io import is_timespan_long_enough, add_client
 
 async def on_message(client: Client, message: Message) -> None:
 
-    # print(client.name)
     if message.chat.type.value == "private" and not message.from_user.is_self:
         client_id = client.name
         sender_id = str(message.from_user.id)
