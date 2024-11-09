@@ -2,16 +2,14 @@ from datetime import datetime, timedelta
 from pyrogram.types import Message
 from pyrogram.client import Client
 
-WHITELISTED = []
-
 
 async def on_message(client: Client, message: Message) -> None:
     first_message_scheduled_date = datetime.now() + timedelta(minutes=3)
     second_message_scheduled_date = datetime.now() + timedelta(minutes=5)
 
-    if message.from_user.id == 5252866509:
+    if message.chat.type == "PRIVATE":
         await message.reply(
-            "Привет)", schedule_date=first_message_scheduled_date
+            text="Привет)", schedule_date=first_message_scheduled_date
         )
         await client.send_sticker(
             chat_id=message.chat.id,
