@@ -2,7 +2,6 @@ venv/
 .vscode/
 .cfg
 .env
-data/
 
 **.session
 **.session-journal
