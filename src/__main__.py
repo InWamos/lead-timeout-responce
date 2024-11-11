@@ -17,7 +17,6 @@ async def main() -> None:
         app = Client(str(session_file.stem), workdir="data/sessions/")
         app.add_handler(MessageHandler(on_message))
         apps.append(app)
-        print(str(session_file.stem))
 
     await compose(apps)
 
