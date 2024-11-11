@@ -16,8 +16,8 @@ async def main() -> None:
     apps = []
     for session_file in session_files:
         app = Client(str(session_file.stem), workdir="data/sessions/")
-        app.add_handler(MessageHandler(callback=on_message))
         app.add_handler(MessageHandler(callback=on_command))
+        app.add_handler(MessageHandler(callback=on_message))
         apps.append(app)
 
     await compose(apps)
