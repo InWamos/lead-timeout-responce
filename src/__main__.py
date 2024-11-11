@@ -6,6 +6,7 @@ from pyrogram.sync import compose
 from pyrogram.client import Client
 from pyrogram.handlers.message_handler import MessageHandler
 from handlers.timeout_responce import on_message
+from handlers.command_responce import on_command
 
 
 async def main() -> None:
@@ -15,7 +16,8 @@ async def main() -> None:
     apps = []
     for session_file in session_files:
         app = Client(str(session_file.stem), workdir="data/sessions/")
-        app.add_handler(MessageHandler(on_message))
+        app.add_handler(MessageHandler(callback=on_message))
+        app.add_handler(MessageHandler(callback=on_command))
         apps.append(app)
 
     await compose(apps)
