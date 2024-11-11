@@ -2,6 +2,7 @@ import asyncio
 import uvloop
 
 from pathlib import Path
+from pyrogram import filters
 from pyrogram.sync import compose
 from pyrogram.client import Client
 from pyrogram.handlers.message_handler import MessageHandler
@@ -16,7 +17,7 @@ async def main() -> None:
     apps = []
     for session_file in session_files:
         app = Client(str(session_file.stem), workdir="data/sessions/")
-        app.add_handler(MessageHandler(callback=on_command))
+        app.add_handler(MessageHandler(callback=on_command, filters=filters.text))
         app.add_handler(MessageHandler(callback=on_message))
         apps.append(app)
 
