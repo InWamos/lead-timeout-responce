@@ -40,3 +40,20 @@ async def on_sticker_set_command(client: Client, message: Message) -> None:
                             ```/add {sticker_name} your-sticker-id```")
     except Exception as e:
         await message.reply(f"unknown server error: {e}")
+
+
+async def on_sticker_rm_command(client: Client, message: Message) -> None:
+    """Pattern: /rm <sticker_name>
+
+    Args:
+        client (Client): _description_
+        message (Message): _description_
+    """
+    elements = message.text.split()
+    sticker_name = elements[1]
+
+    try:
+        remove_sticker(sticker_name)
+        await message.reply(f"Sticker {sticker_name} has been removed")
+    except Exception as e:
+        await message.reply("Couldn't remove this sticker. Maybe it doesn't exist or you made a typo")
