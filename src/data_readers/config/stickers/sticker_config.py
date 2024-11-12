@@ -6,8 +6,9 @@ PATH_CONFIG_STICKERS = "data/configs/stickers.json"
 
 def remove_sticker(key: str) -> None:
     sticker_config = get_sticker_config()
-    if key in sticker_config["stickers"]:
+    if key in sticker_config["stickers"].keys():  # type: ignore
         del sticker_config["stickers"][key]  # type: ignore
+        set_sticker_config(sticker_config)
 
 
 def add_sticker(key: str, value: str) -> None:
@@ -25,7 +26,6 @@ def set_main_sticker(sticker_key: str) -> None:
         set_sticker_config(sticker_config)
     else:
         raise ValueError("No such sticker in memory")
-    
 
 
 def get_main_sticker() -> str:
