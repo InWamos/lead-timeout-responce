@@ -15,8 +15,9 @@ source venv/bin/activate
 ```bash
 pip3 install -r requirements.txt
 ```
+4) **Add your .session files to the data/sessions directory**
 
-4) **Launch bot**
+5) **Launch bot**
 ```bash
 python3 ./src/__main__.py
 ```
