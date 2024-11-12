@@ -19,9 +19,13 @@ def add_sticker(key: str, value: str) -> None:
 
 def set_main_sticker(sticker_key: str) -> None:
     sticker_config = get_sticker_config()
-    sticker_config["chosen_sticker"] = sticker_key
 
-    set_sticker_config(sticker_config)
+    if sticker_key in sticker_config["stickers"]:
+        sticker_config["chosen_sticker"] = sticker_key
+        set_sticker_config(sticker_config)
+    else:
+        raise ValueError("No such sticker in memory")
+    
 
 
 def get_main_sticker() -> str:
