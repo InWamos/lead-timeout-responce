@@ -23,6 +23,7 @@ def set_main_sticker(sticker_key: str) -> None:
 
     set_sticker_config(sticker_config)
 
+
 def get_main_sticker() -> str:
     sticker_config = get_sticker_config()
     chosen_sticker = sticker_config["chosen_sticker"]
@@ -30,7 +31,7 @@ def get_main_sticker() -> str:
         return chosen_sticker
     else:
         raise ValueError("Main sticker isn't set")
-    
+
 
 def get_sticker_config() -> dict[str, dict[str, str] | str]:
     with open(PATH_CONFIG_STICKERS, "r") as json_file:
