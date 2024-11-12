@@ -1,6 +1,5 @@
 import json
 
-PATH_CONFIG_STICKERS = "data/configs/stickers.json"
 PATH_CONFIG_ADMINS = "data/configs/admins.json"
 
 
