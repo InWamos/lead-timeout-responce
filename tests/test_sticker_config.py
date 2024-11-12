@@ -31,4 +31,3 @@ class TestStickerConfig(unittest.TestCase):
         stickers_config["chosen_sticker"] = VALUE
         add_sticker(KEY, VALUE)
         self.assertRaises(ValueError, set_main_sticker, "unexistent_key")
-    #TODO дописать тесты и начать делать хендлер с фильтрами для админки
