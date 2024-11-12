@@ -1,6 +1,6 @@
 from pyrogram.types import Message
 from pyrogram.client import Client
-from data_readers.config.stickers.sticker_config import add_sticker, remove_sticker, get_sticker_config
+from data_readers.config.stickers.sticker_config import add_sticker, remove_sticker, get_sticker_config, set_main_sticker
 
 async def on_sticker_add_command(client: Client, message: Message) -> None:
     """ Pattern: /add <sticker_name> <sticker_id>
@@ -22,3 +22,21 @@ async def on_sticker_add_command(client: Client, message: Message) -> None:
     except Exception as e:
         await message.reply("Couldn't add the sticker to list")
 
+async def on_sticker_set_command(client: Client, message: Message) -> None:
+    """Pattern: /set <sticker_name>
+
+    Args:
+        client (Client): _description_
+        message (Message): _description_
+    """
+    elements = message.text.split()
+    sticker_name = elements[1]
+
+    try:
+        set_main_sticker(sticker_name)
+        await message.reply(f"Sticker {sticker_name} set as main. We gonna use it now")
+    except ValueError as ve:
+        await message.reply(f"This sticker doesn't exist. Add is with 
+                            ```/add {sticker_name} your-sticker-id```")
+    except Exception as e:
+        await message.reply(f"unknown server error: {e}")
