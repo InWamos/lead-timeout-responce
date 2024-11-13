@@ -24,7 +24,7 @@ async def on_sticker_add_command(client: Client, message: Message) -> None:
     try:
         await client.send_sticker(chat_id=message.chat.id, sticker=sticker_id)
         await message.reply(
-            f"The sticker has been successfully added. Use:\n` /set {sticker_name} `to set it as main",
+            f"The sticker has been successfully added. Use:\n`/set {sticker_name} `to set it as main",
             parse_mode=ParseMode.MARKDOWN
         )
         add_sticker(sticker_name, sticker_id)
@@ -47,7 +47,7 @@ async def on_sticker_set_command(client: Client, message: Message) -> None:
         await message.reply(f"Sticker {sticker_name} set as main. We gonna use it now")
     except ValueError as ve:
         await message.reply(
-            f"This sticker doesn't exist. Add is with\n` /add {sticker_name} your-sticker-id `",
+            f"This sticker doesn't exist. Add is with\n`/add {sticker_name} your-sticker-id `",
             parse_mode=ParseMode.MARKDOWN,
         )
     except Exception as e:
@@ -98,7 +98,7 @@ async def on_sticker_get_command(client: Client, message: Message) -> None:
 
     else:
         string_builder = (
-            "We have no stickers to show. Add them with \n` /add name sticker-id `"
+            "We have no stickers to show. Add them with \n`/add name sticker-id `"
         )
 
     await message.reply(string_builder, parse_mode=ParseMode.MARKDOWN)
