@@ -91,8 +91,8 @@ async def on_sticker_get_command(client: Client, message: Message) -> None:
 
     if stickers:
         string_builder += "Your sticker setup:\n"
-        for sticker_name, sticker_value in stickers:
-            string_builder += f"{sticker_name} : {sticker_value}\n"
+        for sticker_name, sticker_value in stickers.items():
+            string_builder += f"**{sticker_name}** : {sticker_value}\n"
         if main_sticker:
             string_builder += f"\nCurrent sticker: {main_sticker}"
 
