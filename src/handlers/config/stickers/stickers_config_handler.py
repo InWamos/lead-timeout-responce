@@ -15,9 +15,7 @@ async def on_sticker_add_command(client: Client, message: Message) -> None:
 
     try:
         await client.send_sticker(chat_id=message.chat.id, sticker=sticker_id)
-        await message.reply(f"The sticker has been successfully added. Use:
-                             ```/set {sticker_name}```
-                             to set it as main")
+        await message.reply(f"The sticker has been successfully added. Use:\n```/set {sticker_name}```\nto set it as main")
         add_sticker(sticker_name, sticker_id)
     except Exception as e:
         await message.reply("Couldn't add the sticker to list")
@@ -36,8 +34,7 @@ async def on_sticker_set_command(client: Client, message: Message) -> None:
         set_main_sticker(sticker_name)
         await message.reply(f"Sticker {sticker_name} set as main. We gonna use it now")
     except ValueError as ve:
-        await message.reply(f"This sticker doesn't exist. Add is with 
-                            ```/add {sticker_name} your-sticker-id```")
+        await message.reply(f"This sticker doesn't exist. Add is with\n```/add {sticker_name} your-sticker-id```")
     except Exception as e:
         await message.reply(f"unknown server error: {e}")
 
