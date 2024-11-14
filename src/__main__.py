@@ -4,11 +4,18 @@ import uvloop
 
 from pathlib import Path
 from filters import filter_pm_isbot_isself, filter_in_commands_list
+from filters.config import sticker_filter
 from pyrogram.sync import compose
 from pyrogram.client import Client
 from pyrogram.handlers.message_handler import MessageHandler
 from handlers.timeout_responce import on_message
 from handlers.command_responce import on_command
+from handlers.config.stickers.stickers_config_handler import (
+    on_sticker_add_command,
+    on_sticker_set_command,
+    on_sticker_rm_command,
+    on_sticker_get_command,
+)
 
 
 async def main() -> None:
@@ -18,6 +25,45 @@ async def main() -> None:
     apps = []
     for session_file in session_files:
         app = Client(str(session_file.stem), workdir="data/sessions/")
+        app.add_handler(
+            MessageHandler(
+                callback=on_sticker_add_command,
+                filters=pyrogram.filters.create(
+                    sticker_filter.filter_on_sticker_add_command
+                )
+                & pyrogram.filters.me,
+            )
+        )
+
+        app.add_handler(
+            MessageHandler(
+                callback=on_sticker_set_command,
+                filters=pyrogram.filters.create(
+                    sticker_filter.filter_on_sticker_set_command
+                )
+                & pyrogram.filters.me,
+            )
+        )
+
+        app.add_handler(
+            MessageHandler(
+                callback=on_sticker_rm_command,
+                filters=pyrogram.filters.create(
+                    sticker_filter.filter_on_sticker_rm_command
+                )
+                & pyrogram.filters.me,
+            )
+        )
+
+        app.add_handler(
+            MessageHandler(
+                callback=on_sticker_get_command,
+                filters=pyrogram.filters.create(
+                    sticker_filter.filter_on_sticker_get_command
+                )
+                & pyrogram.filters.me,
+            )
+        )
         app.add_handler(
             MessageHandler(
                 callback=on_command,
