@@ -37,6 +37,15 @@ def get_main_sticker() -> str:
         raise ValueError("Main sticker isn't set")
 
 
+def get_sticker_id_by_key(key: str) -> str:
+    sticker_config = get_sticker_config()
+    stickers = sticker_config["stickers"]
+    try:
+        return stickers[key] # type: ignore
+    except:
+        raise ValueError("No sticker with this key")
+
+
 def get_sticker_config() -> dict[str, dict[str, str] | str]:
     with open(PATH_CONFIG_STICKERS, "r") as json_file:
         return json.load(json_file)
