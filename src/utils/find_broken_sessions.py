@@ -2,9 +2,6 @@ import asyncio
 
 from pathlib import Path
 from pyrogram.client import Client
-from pyrogram.handlers.message_handler import MessageHandler
-from handlers.timeout_responce import on_message
-from handlers.command_responce import on_command
 
 
 async def main() -> None:
