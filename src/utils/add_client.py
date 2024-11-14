@@ -4,15 +4,15 @@ from pyrogram.client import Client
 
 TWO_FACTOR_CODE = ""
 
-api_id = 0
-api_hash = ""
+API_ID = 0
+API_HASH = ""
 
 
 async def main():
     async with Client(
         str(uuid.uuid4()),
-        api_id,
-        api_hash,
+        API_ID,
+        API_HASH,
         workdir="data/sessions",
         password=TWO_FACTOR_CODE,
     ) as app:
