@@ -14,15 +14,18 @@ async def on_message(client: Client, message: Message) -> None:
     sender_id = str(message.from_user.id)
 
     if is_timespan_long_enough(client_id, sender_id):
-        sticker_main_key = get_main_sticker()
-        sticker_main = get_sticker_id_by_key(sticker_main_key)
-        first_message_scheduled_date = datetime.now() + timedelta(minutes=3)
-        second_message_scheduled_date = datetime.now() + timedelta(minutes=5)
-        await message.reply(text="Привет)", schedule_date=first_message_scheduled_date)
-        await client.send_sticker(
-            chat_id=message.chat.id,
-            sticker=sticker_main,
-            schedule_date=second_message_scheduled_date,
-        )
+        try:
+            sticker_main_key = get_main_sticker()
+            sticker_main = get_sticker_id_by_key(sticker_main_key)
+            first_message_scheduled_date = datetime.now() + timedelta(minutes=3)
+            second_message_scheduled_date = datetime.now() + timedelta(minutes=5)
+            await message.reply(text="Привет)", schedule_date=first_message_scheduled_date)
+            await client.send_sticker(
+                chat_id=message.chat.id,
+                sticker=sticker_main,
+                schedule_date=second_message_scheduled_date,
+            )
 
-        add_client(client_id, sender_id)
+            add_client(client_id, sender_id)
+        except ValueError:
+            await client.send_message(chat_id="me", text="SET your main sticker with `/set` first")
