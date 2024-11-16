@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from pyrogram.types import Message
 from pyrogram.client import Client
-from data_readers.data_reader_io import is_timespan_long_enough, add_client
+from data_readers.memory.data_reader_io import is_timespan_long_enough, add_client
 from data_readers.config.stickers.sticker_config import (
     get_main_sticker,
     get_sticker_id_by_key,

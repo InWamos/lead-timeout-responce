@@ -1,6 +1,6 @@
 from pyrogram.types import Message
 from pyrogram.client import Client
-from data_readers.data_reader_io import is_timespan_long_enough, add_client
+from data_readers.memory.data_reader_io import is_timespan_long_enough, add_client
 
 STICKER_ID = "CAACAgIAAxkBAAKI02cyUrhn_snxmh07Ag7PMsenNowqAAJhAQACEBptIu-IjH2qmk0HNgQ"
 

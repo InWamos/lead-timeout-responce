@@ -1,7 +1,7 @@
 import os
 import unittest
 from datetime import datetime, timedelta
-from src.data_readers import data_reader_io
+from src.data_readers.memory import data_reader_io
 
 
 class TestDataReaderIO(unittest.TestCase):
