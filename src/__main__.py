@@ -3,13 +3,14 @@ import pyrogram
 import uvloop
 
 from pathlib import Path
-from filters import filter_pm_isbot_isself, filter_in_commands_list
+from filters.commands import filter_in_commands_list
 from filters.config import sticker_filter
 from pyrogram.sync import compose
 from pyrogram.client import Client
 from pyrogram.handlers.message_handler import MessageHandler
-from handlers.timeout_responce import on_message
-from handlers.command_responce import on_command
+from filters.timeout import filter_pm_isbot_isself
+from handlers.timeout.timeout_responce import on_message
+from handlers.commands.command_responce import on_command
 from handlers.config.stickers.stickers_config_handler import (
     on_sticker_add_command,
     on_sticker_set_command,
